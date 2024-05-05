@@ -3,6 +3,7 @@ const app = require("./app");
 // const DB_HOST =
 //   "mongodb+srv://Artem:aJfvNn5qUFyBGLPI@cluster0.z4pjdre.mongodb.net/db-contactbook";
 const { DB_HOST, PORT = 3000 } = process.env;
+// const PORT = 3000;
 mongoose.set("strictQuery", true);
 
 mongoose
