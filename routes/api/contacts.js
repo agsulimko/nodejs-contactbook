@@ -1,34 +1,8 @@
-// const express = require("express");
-
-// const router = express.Router();
-
-// router.get("/", async (req, res, next) => {
-//   res.json({ message: "template message" });
-// });
-
-// router.get("/:contactId", async (req, res, next) => {
-//   res.json({ message: "template message" });
-// });
-
-// router.post("/", async (req, res, next) => {
-//   res.json({ message: "template message" });
-// });
-
-// router.delete("/:contactId", async (req, res, next) => {
-//   res.json({ message: "template message" });
-// });
-
-// router.put("/:contactId", async (req, res, next) => {
-//   res.json({ message: "template message" });
-// });
-
-// module.exports = router;
-
 const express = require("express");
 const ctrl = require("../../controllers/contacts");
 
 const { validateBody, isValidId } = require("../../middlewares");
-const { schemas } = require("../../models/contacts");
+const { schemas } = require("../../models/contact");
 
 const router = express.Router();
 
