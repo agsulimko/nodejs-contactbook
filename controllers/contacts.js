@@ -3,6 +3,7 @@ const { HttpError, ctrlWrapper } = require("../helpers");
 const { Contact } = require("../models/contact");
 
 const getAll = async (req, res, next) => {
+  // const result = await Contact.find({}, "name phone" );- поверне нам тільки два поля name  та phone або якщо не треба повертати то"-name -phone"
   const result = await Contact.find({});
   res.json(result);
 };
@@ -10,6 +11,7 @@ const getAll = async (req, res, next) => {
 const getById = async (req, res, next) => {
   const { contactId } = req.params;
   const result = await Contact.findById(contactId);
+  //  const result = await Contact.findOne({_id: contactId});-знайти перше співпадіння
 
   if (!result) {
     throw HttpError(404, `Contact with id= ${contactId} Not Found`);

@@ -2,6 +2,9 @@ const { Schema, model } = require("mongoose");
 const Joi = require("joi");
 const { handleMongooseError } = require("../middlewares");
 
+// const sexList = ["man", "woman"];
+
+// mongoose-схема перевіряє  , те що ми зберігаємо в базі
 const contactSchema = new Schema(
   {
     name: {
@@ -22,18 +25,19 @@ const contactSchema = new Schema(
     },
     // sex: {
     //   type: String,
-    //   enum: ["man", "woman"],
+    //   enum: sexList,
     // },
   },
   { versionKey: false, timestamps: true }
 );
 contactSchema.post("save", handleMongooseError);
-
+// joiSchema - перевіряє тіло запиту, те що нам приходить
 const joiSchema = Joi.object({
   name: Joi.string().required(),
   email: Joi.string().required(),
   phone: Joi.string().required(),
   favorite: Joi.bool().required(),
+  // sex: Joi.string().validate(...).required(),
 });
 
 const favoriteJoiSchema = Joi.object({
