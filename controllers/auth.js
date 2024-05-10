@@ -5,8 +5,8 @@ const { User } = require("../models/user");
 
 const { ctrlWrapper, HttpError } = require("../helpers");
 
-// const SECRET_KEY = process.env;
-const SECRET_KEY = "l+^0ASYi!Zt9G-pSG*HkdCX2%3B0E8";
+const SECRET_KEY = process.env;
+// const SECRET_KEY = "l+^0ASYi!Zt9G-pSG*HkdCX2%3B0E8";
 const register = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
