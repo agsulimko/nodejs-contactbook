@@ -6,6 +6,7 @@ const getAll = async (req, res, next) => {
   // const result = await Contact.find({}, "name phone" );- поверне нам тільки два поля name  та phone або якщо не треба повертати то"-name -phone"
   const { _id: owner } = req.user;
   const { favorite } = req.body;
+  // добовляємо вбудовану пагінацію ,  наприклад ?page=2&limit=2
   const { page = 1, limit = 20 } = req.query;
 
   const skip = (page - 1) * limit;

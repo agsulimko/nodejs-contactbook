@@ -1,3 +1,4 @@
+// перевірка, чи валідний токен чи ні
 const jwt = require("jsonwebtoken");
 
 const { User } = require("../models/user");
@@ -17,7 +18,6 @@ const authenticate = async (req, res, next) => {
     const user = await User.findById(id);
 
     if (!user || !user.token || user.token !== token) {
-      // console.log(user.token);
       next(HttpError(401, "Not authorized"));
     }
     req.user = user;

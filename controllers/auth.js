@@ -53,15 +53,16 @@ const login = async (req, res) => {
     token,
   });
 };
-
+// Отримати текущего users
 const getCurrent = async (req, res) => {
-  const { email, subscription } = req.user;
+  const { name, email, subscription } = req.user;
 
   if (!email) {
     throw HttpError(401, "Not authorized");
   }
 
   res.status(200).json({
+    name,
     email,
     subscription,
   });
