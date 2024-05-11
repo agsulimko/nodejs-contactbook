@@ -1,4 +1,4 @@
-const bcrypt = require("bcrypt");
+const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const { User } = require("../models/user");
@@ -13,7 +13,7 @@ const register = async (req, res) => {
   if (user) {
     throw HttpError(409, "Email already in use");
   }
-  const hashPassword = await bcrypt.hash(password, 10);
+  const hashPassword = await bcryptjs.hash(password, 10);
   const newUser = await User.create({ ...req.body, password: hashPassword });
   res.status(201).json({
     name: newUser.name,
@@ -30,7 +30,7 @@ const login = async (req, res) => {
   if (!user) {
     throw HttpError(401, "Email or password is wrong");
   }
-  const passwordCompare = await bcrypt.compare(password, user.password);
+  const passwordCompare = await bcryptjs.compare(password, user.password);
   if (!passwordCompare) {
     throw HttpError(401, "Email or password is wrong");
   }
