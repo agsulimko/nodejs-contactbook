@@ -4,11 +4,11 @@
 //   "mongodb+srv://Artem:aJfvNn5qUFyBGLPI@cluster0.z4pjdre.mongodb.net/db-contactbook";
 
 // mongoose.connect(DB_HOST);
-
+require("dotenv").config();
 const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
-require("dotenv").config();
+
 const authRouter = require("./routes/api/auth");
 const contactsRouter = require("./routes/api/contacts");
 
