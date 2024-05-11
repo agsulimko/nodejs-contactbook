@@ -16,7 +16,7 @@ const getAll = async (req, res, next) => {
     skip,
     limit,
   }).populate("owner", "name email");
-
+  // для  owner поветаємо тільки два поля name та email
   res.json(result);
 };
 
