@@ -3,10 +3,10 @@ const app = require("./app");
 require("dotenv").config();
 // const DB_HOST =
 //   "mongodb+srv://Artem:aJfvNn5qUFyBGLPI@cluster0.z4pjdre.mongodb.net/db-contactbook";
-const { DB_HOST, PORT = 3000 } = process.env;
+const { DB_HOST, PORT = 3000, SECRET_KEY } = process.env;
 // const PORT = 3000;
 mongoose.set("strictQuery", true);
-console.log(process.env.SECRET_KEY);
+console.log(SECRET_KEY);
 mongoose
   .connect(DB_HOST)
   .then(() => {
