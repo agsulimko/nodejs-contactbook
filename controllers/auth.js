@@ -30,6 +30,8 @@ const register = async (req, res) => {
     avatarURL,
   });
   res.status(201).json({
+    status: "success",
+    code: 201,
     name: newUser.name,
     email: newUser.email,
     subscription: newUser.subscription,
