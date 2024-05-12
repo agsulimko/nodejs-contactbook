@@ -2,7 +2,8 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const gravatar = require("gravatar");
 const path = require("path");
-const fs = require("fs/promises");
+// const fs = require("fs/promises");
+const fs = require("fs");
 const { User } = require("../models/user");
 
 const { ctrlWrapper, HttpError } = require("../helpers");
@@ -10,7 +11,7 @@ const Jimp = require("jimp");
 
 const { SECRET_KEY } = process.env;
 // зберігаємо шлях до папки
-const avatarsDir = path.join(__dirname, "../", "public", "avatars");
+const avatarsDir = path.join(__dirname, "./", "public", "avatars");
 
 const register = async (req, res) => {
   const { email, password } = req.body;
@@ -45,7 +46,7 @@ const login = async (req, res) => {
     throw HttpError(401, "Email or password is wrong");
   }
   const passwordCompare = await bcrypt.compare(password, user.password);
-  if (!passwordCompare) {
+  if (!user || !passwordCompare) {
     throw HttpError(401, "Email or password is wrong");
   }
 
@@ -61,6 +62,7 @@ const login = async (req, res) => {
   await User.findByIdAndUpdate(user._id, { token });
   res.status(200).json({
     user: {
+      name: user.name,
       email,
       subscription: user.subscription,
       avatarURL: user.avatarURL,
@@ -91,16 +93,11 @@ const logout = async (req, res) => {
   res.status(204).json({
     message: "Logout success",
   });
-  // res.json({
-  //   message: "Logout success",
-  // });
 };
 
 const updateStatusSubscription = async (req, res, next) => {
   const { _id } = req.user;
   const { subscription } = req.body;
-  console.log(subscription);
-  console.log(["starter", "pro", "business"].includes(subscription));
 
   if (!["starter", "pro", "business"].includes(subscription)) {
     throw HttpError(400, "Invalid subscription value");

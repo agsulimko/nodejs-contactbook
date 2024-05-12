@@ -36,6 +36,11 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    // dfhbfyn когда avatarURL необязательным полем в схеме пользователя
+    // avatarURL: {
+    //   type: String,
+    //   default: null,
+    // },
   },
   { versionKey: false, timestamps: true }
 );
