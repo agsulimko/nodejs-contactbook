@@ -155,7 +155,7 @@ const updateAvatar = async (req, res) => {
 
   // await avatar.resize(250, 250).write(resultUpload);
 
-  const avatarURL = path.join("avatars", originalname).replace(/\//g, "\\");
+  const avatarURL = path.join("public", "avatars", originalname);
   await User.findByIdAndUpdate(_id, { avatarURL });
 
   res.json({
