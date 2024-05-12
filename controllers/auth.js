@@ -11,7 +11,7 @@ const Jimp = require("jimp");
 
 const { SECRET_KEY } = process.env;
 // зберігаємо шлях до папки
-const avatarsDir = path.join(__dirname, "./", "public", "avatars");
+const avatarsDir = path.join(__dirname, "../", "public", "avatars");
 
 const register = async (req, res) => {
   const { email, password } = req.body;
