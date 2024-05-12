@@ -161,12 +161,12 @@ const updateAvatar = async (req, res) => {
 
     await avatar.resize(250, 250).write(resultUpload);
 
-    const avatarURL = path.join("/avatars", filename);
-    await User.findByIdAndUpdate(_id, { avatarURL });
+    // const avatarURL = path.join("avatars", filename);
+    // await User.findByIdAndUpdate(_id, { avatarURL });
 
-    res.json({
-      avatarURL,
-    });
+    // res.json({
+    //   avatarURL,
+    // });
   } catch (error) {
     console.error(error); // Выводим ошибку в консоль для отладки
     res.status(500).json({ message: "Failed to update avatar" });
