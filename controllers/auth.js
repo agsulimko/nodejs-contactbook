@@ -144,6 +144,7 @@ const updateAvatar = async (req, res) => {
   } catch (error) {
     await fs.unlink(req.file.path);
     console.error(error); // Выводим ошибку в консоль для отладки
+    res.status(500).json({ message: "Failed to update avatar" });
     throw error;
   }
 };
